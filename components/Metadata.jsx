@@ -2,13 +2,13 @@ export async function generateMetadata({ params }) {
   const article = await getArticle(params.slug);
 
   return {
-    // title: article.title,
-    // description: article.summary,
-    // keywords: article.tags,
+    title: article.title,
+    description: article.summary,
+    keywords: article.tags,
 
     openGraph: {
-      // title: article.title,
-      // description: article.summary,
+      title: article.title,
+      description: article.summary,
       type: "article",
       images: [article.images],
     },
