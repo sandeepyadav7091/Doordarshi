@@ -23,8 +23,7 @@ export const metadata = {
     siteName: "Doordarshi Samachar",
     images: [
       {
-        // url: "https://doordarshisamachar.in/logo.png",
-        url: 'https://erp.doordarshisamachar.in/media/thumbnails/ChatGPT%20Image%20Jul%2020,%202026,%2009_34_22%20PM.png',
+        url: "https://doordarshisamachar.in/logo.png",
         width: 1200,
         height: 630,
       },

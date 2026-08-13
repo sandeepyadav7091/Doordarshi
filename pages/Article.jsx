@@ -292,10 +292,16 @@ const fullContent = article?.content?.replace(
 const handleShare = async () => {
   const shareUrl = `${window.location.origin}/article.html?id=${article.slug}`;
   const shareData = {
-    image: article.img,
     title: article.title,
     text: `${article.title}\n\n${article.desc}`,
     url: shareUrl,
+    images: [
+      {
+        url: "https://doordarshisamachar.in/logo.png",
+        width: 1200,
+        height: 630,
+      },
+    ],
   };
   try {
     if (navigator.share) {
