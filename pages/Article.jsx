@@ -10,26 +10,26 @@ import { TRANSLATIONS, categoryColors } from "../constants/translations";
 import { useAppContext } from "../context/AppContext";
 import { formatTimeAgo } from "../utils/relativeTime";
 
-export async function generateMetadata({ params }) {
-  const article = posts.find(a => a.slug === params.slug);
+// export async function generateMetadata({ params }) {
+//   const article = posts.find(a => a.slug === params.slug);
 
-  if (!article) return {};
+//   if (!article) return {};
 
-  return {
-    title: article.title,
-    description: article.desc,
-    openGraph: {
-      title: article.title,
-      description: article.desc,
-      url: `https://doordarshisamachar.in/article/${params.slug}`,
-      images: [
-        {
-          url: 'https://akm-img-a-in.tosshub.com/aajtak/images/story/202608/6a7d53dcbe5f5-cab-booking-tip-rules-131919136-16x9.jpg?size=948:533',
-        },
-      ],
-    },
-  };
-}
+//   return {
+//     title: article.title,
+//     description: article.desc,
+//     openGraph: {
+//       title: article.title,
+//       description: article.desc,
+//       url: `https://doordarshisamachar.in/article/${params.slug}`,
+//       images: [
+//         {
+//           url: 'https://akm-img-a-in.tosshub.com/aajtak/images/story/202608/6a7d53dcbe5f5-cab-booking-tip-rules-131919136-16x9.jpg?size=948:533',
+//         },
+//       ],
+//     },
+//   };
+// }
 
 const API_BASE_URL = "https://erp.doordarshisamachar.in";
 
