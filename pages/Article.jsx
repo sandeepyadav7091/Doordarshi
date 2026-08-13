@@ -358,7 +358,7 @@ const handleShare = () => {
     const shareUrl = `${window.location.origin}/article.html?id=${article.slug}`;
 
   const message =
-    `${article.title}\n\n${article.desc}\n\n${shareUrl}`;
+    `${article.title}\n\n${article.img}\n\n${article.desc}\n\n${shareUrl}`;
 
   const whatsappUrl =
     `https://wa.me/?text=${encodeURIComponent(message)}`;
