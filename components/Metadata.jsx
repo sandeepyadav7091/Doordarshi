@@ -10,14 +10,14 @@ export async function generateMetadata({ params }) {
       title: article.title,
       description: article.summary,
       type: "article",
-      images: [article.img],
+      images: [article.images],
     },
 
     twitter: {
       card: "summary_large_image",
       title: article.title,
       description: article.summary,
-      images: [article.img],
+      images: [article.images],
     },
   };
 }
