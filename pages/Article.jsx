@@ -295,13 +295,7 @@ const handleShare = async () => {
     title: article.title,
     text: `${article.title}\n\n${article.desc}`,
     url: shareUrl,
-    images: [
-      {
-        url: "https://akm-img-a-in.tosshub.com/aajtak/images/story/202608/6a7d53dcbe5f5-cab-booking-tip-rules-131919136-16x9.jpg?size=948:533",
-        width: 1200,
-        height: 630,
-      },
-    ],
+    image: 'https://akm-img-a-in.tosshub.com/aajtak/images/story/202608/6a7d53dcbe5f5-cab-booking-tip-rules-131919136-16x9.jpg?size=948:533'
   };
   try {
     if (navigator.share) {
