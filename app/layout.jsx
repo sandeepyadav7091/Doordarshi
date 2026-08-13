@@ -12,8 +12,8 @@ export const metadata = {
   keywords: ["news", "breaking news", "india news"],
   metadataBase: new URL("https://doordarshisamachar.in"),
   icons: {
-    icon: "/icon.png",
-    shortcut: "/icon.png",
+    icon: "https://doordarshisamachar.in/icon.png",
+    shortcut: "https://doordarshisamachar.in/icon.png",
   },
 
   openGraph: {
