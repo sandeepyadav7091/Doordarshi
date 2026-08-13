@@ -295,11 +295,7 @@ const handleShare = async () => {
     title: article.title,
     text: `${article.title}\n\n${article.desc}`,
     url: shareUrl,
-    images: [
-      {
-        url: article.img,
-      },
-    ],
+    image: article.img
   };
   try {
     if (navigator.share) {
