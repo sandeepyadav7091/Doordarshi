@@ -21,13 +21,13 @@ export const metadata = {
     description: "Latest breaking news",
     url: "https://doordarshisamachar.in",
     siteName: "Doordarshi Samachar",
-    images: [
-      {
-        url: "https://doordarshisamachar.in/logo.png",
-        width: 1200,
-        height: 630,
-      },
-    ],
+    // images: [
+    //   {
+    //     url: "https://doordarshisamachar.in/logo.png",
+    //     width: 1200,
+    //     height: 630,
+    //   },
+    // ],
     type: "website",
   },
 };
