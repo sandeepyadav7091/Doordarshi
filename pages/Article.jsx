@@ -181,7 +181,7 @@ useEffect(() => {
           {/* Info Box */}
           <div className={`mt-8 p-4 rounded-lg ${dark ? "bg-gray-900/50" : "bg-red-50"} border ${dark ? "border-gray-800" : "border-red-200"}`}>
             <p className={`text-xs ${dark ? "text-gray-400" : "text-red-700"}`}>
-              {lang === "en" 
+              {lang === "en"
                 ? "Error Code: 404 • Page Not Found"
                 : "त्रुटि कोड: 404 • पृष्ठ नहीं मिला"}
             </p>
@@ -292,9 +292,9 @@ const fullContent = article?.content?.replace(
 const handleShare = async () => {
   const shareUrl = `${window.location.origin}/article.html?id=${article.slug}`;
   const shareData = {
-    title: article.title,
+    // title: article.title,
     text: `${article.title}\n\n${article.desc}`,
-    url: shareUrl,
+    // url: shareUrl,
   };
   try {
     if (navigator.share) {
