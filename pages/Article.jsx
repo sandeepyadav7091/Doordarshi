@@ -294,7 +294,7 @@ const handleShare = async () => {
   const shareData = {
     // title: article.title,
     text: `${article.title}\n\n${article.desc}`,
-    // url: shareUrl,
+    url: shareUrl,
   };
   try {
     if (navigator.share) {
