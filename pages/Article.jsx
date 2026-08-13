@@ -63,37 +63,6 @@ export default function Article({ id: propId } = {}) {
     loadApiPost();
   }, [id, fetchPostBySlug]);
 
-  //asjdh
-  useEffect(() => {
-  if (!apiPost?.PR_THUMBNAIL) return;
-
-  const imagePath = apiPost.PR_THUMBNAIL;
-
-  const imageUrl = imagePath.startsWith("http")
-    ? imagePath
-    : `${API_BASE_URL}${imagePath}`;
-
-  const setMeta = (property, content) => {
-    let meta = document.querySelector(
-      `meta[property="${property}"]`
-    );
-
-    if (!meta) {
-      meta = document.createElement("meta");
-      meta.setAttribute("property", property);
-      document.head.appendChild(meta);
-    }
-
-    meta.setAttribute("content", content);
-  };
-
-  setMeta("og:title", apiPost.PR_HEADING || "");
-  setMeta("og:description", apiPost.PR_SUB_HEADING || "");
-  setMeta("og:image", imageUrl);
-  setMeta("og:type", "article");
-}, [apiPost]);
-// askjn
-
 useEffect(() => {
   if (apiPost && apiPost?.PR_CATEGORY?.PR_SLUG) {
     const loadRelatedPosts = async () => {
@@ -320,31 +289,72 @@ const fullContent = article?.content?.replace(
   //   }
   // };
 
-const handleShare = async () => {
-  const shareUrl = `${window.location.origin}/article.html?id=${article.slug}`;
-  console.log("dhjvc", article)
-  const shareData = {
-    title: article.title,
-    text: `${article.title}\n\n${article.desc}`,
-    url: shareUrl,
-    img: article.img
-  };
+  const handleShare = async () => {
+  const shareUrl =
+    `https://doordarshisamachar.in/article.html?id=${encodeURIComponent(
+      article.slug
+    )}`;
+
   try {
-    if (navigator.share) {
+    const response = await fetch(article.img);
+    const blob = await response.blob();
+
+    const file = new File(
+      [blob],
+      "article-thumbnail.jpg",
+      {
+        type: blob.type || "image/jpeg",
+      }
+    );
+
+    const shareData = {
+      title: article.title,
+      text: `${article.title}\n\n${article.desc}`,
+      url: shareUrl,
+      files: [file],
+    };
+
+    if (navigator.canShare && navigator.canShare({ files: [file] })) {
       await navigator.share(shareData);
     } else {
-      await navigator.clipboard.writeText(shareUrl);
-
-      alert(
-        lang === "en"
-          ? "Link copied to clipboard!"
-          : "लिंक क्लिपबोर्ड में कॉपी हो गया!"
-      );
+      await navigator.share({
+        title: article.title,
+        text: `${article.title}\n\n${article.desc}`,
+        url: shareUrl,
+      });
     }
   } catch (error) {
-    console.error("Share error:", error);
+    if (error.name !== "AbortError") {
+      console.error("Share error:", error);
+    }
   }
 };
+
+// const handleShare = async () => {
+//   // const shareUrl = `${window.location.origin}/article.html?id=${article.slug}`;
+//   const shareUrl = `https://doordarshisamachar.in/article.html?id=${encodeURIComponent(article.slug)}`;
+//   const shareData = {
+//     title: article.title,
+//     text: `${article.title}\n\n${article.desc}`,
+//     url: shareUrl,
+//     img: article.img
+//   };
+//   try {
+//     if (navigator.share) {
+//       await navigator.share(shareData);
+//     } else {
+//       await navigator.clipboard.writeText(shareUrl);
+
+//       alert(
+//         lang === "en"
+//           ? "Link copied to clipboard!"
+//           : "लिंक क्लिपबोर्ड में कॉपी हो गया!"
+//       );
+//     }
+//   } catch (error) {
+//     console.error("Share error:", error);
+//   }
+// };
 
   return (
     <div className="max-w-7xl mx-auto px-4 py-6">
