@@ -293,7 +293,12 @@ const fullContent = article?.content?.replace(
   const handleShare = async () => {
   const shareUrl = `${window.location.origin}/article.html?id=${article.slug}`;
 
-  try {
+  const isMobile = /Android|iPhone|iPad|iPod/i.test(
+    navigator.userAgent
+  );
+
+  if(isMobile) {
+    try {
     const response = await fetch(article.img);
     const blob = await response.blob();
 
@@ -326,6 +331,29 @@ const fullContent = article?.content?.replace(
       console.error("Share error:", error);
     }
   }
+  } else {
+    const shareData = {
+    title: article.title,
+    text: `${article.title}\n\n${article.desc}`,
+    url: shareUrl,
+  };
+  try {
+    if (navigator.share) {
+      await navigator.share(shareData);
+    } else {
+      await navigator.clipboard.writeText(shareUrl);
+
+      alert(
+        lang === "en"
+          ? "Link copied to clipboard!"
+          : "लिंक क्लिपबोर्ड में कॉपी हो गया!"
+      );
+    }
+  } catch (error) {
+    console.error("Share error:", error);
+  }
+  }
+  
 };
 
 // const handleShare = async () => {
