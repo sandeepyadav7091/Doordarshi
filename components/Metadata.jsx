@@ -14,7 +14,7 @@ export async function generateMetadata({ params }) {
       // images: [article.images],
       images: [
         {
-          url: article.img,
+          url: article.image,
           width: 1200,
           height: 630,
         },
