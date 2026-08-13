@@ -12,8 +12,8 @@ export const metadata = {
   keywords: ["news", "breaking news", "india news"],
   metadataBase: new URL("https://doordarshisamachar.in"),
   icons: {
-    icon: "https://doordarshisamachar.in/logo.png",
-    shortcut: "https://doordarshisamachar.in/logo.png",
+    icon: "/logo.png",
+    shortcut: "/logo.png",
   },
 
   openGraph: {
@@ -23,7 +23,7 @@ export const metadata = {
     siteName: "Doordarshi Samachar",
     images: [
       {
-        url: "https://doordarshisamachar.in/logo.png",
+        url: "/logo.png",
         width: 1200,
         height: 630,
       },
