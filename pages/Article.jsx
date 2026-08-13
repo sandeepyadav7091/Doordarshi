@@ -296,6 +296,15 @@ const handleShare = async () => {
     title: article.title,
     text: `${article.title}\n\n${article.desc}`,
     url: shareUrl,
+    openGraph: {
+      images: [
+        {
+          url: article.img,
+          width: 1200,
+          height: 630,
+        }
+      ]
+    }
   };
   try {
     if (navigator.share) {
