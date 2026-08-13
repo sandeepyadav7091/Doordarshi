@@ -290,43 +290,43 @@ const fullContent = article?.content?.replace(
   //   }
   // };
 
-  const handleShare = async () => {
-  const shareUrl = `${window.location.origin}/article.html?id=${article.slug}`;
+//   const handleShare = async () => {
+//   const shareUrl = `${window.location.origin}/article.html?id=${article.slug}`;
 
-  try {
-    const response = await fetch(article.img);
-    const blob = await response.blob();
+//   try {
+//     const response = await fetch(article.img);
+//     const blob = await response.blob();
 
-    const file = new File(
-      [blob],
-      "article-thumbnail.jpg",
-      {
-        type: blob.type || "image/jpeg",
-      }
-    );
+//     const file = new File(
+//       [blob],
+//       "article-thumbnail.jpg",
+//       {
+//         type: blob.type || "image/jpeg",
+//       }
+//     );
 
-    const shareData = {
-      title: article.title,
-      text: `${article.title}\n\n${article.desc}`,
-      url: shareUrl,
-      files: [file],
-    };
+//     const shareData = {
+//       title: article.title,
+//       text: `${article.title}\n\n${article.desc}`,
+//       url: shareUrl,
+//       files: [file],
+//     };
 
-    if (navigator.canShare && navigator.canShare({ files: [file] })) {
-      await navigator.share(shareData);
-    } else {
-      await navigator.share({
-        title: article.title,
-        text: `${article.title}\n\n${article.desc}`,
-        url: shareUrl,
-      });
-    }
-  } catch (error) {
-    if (error.name !== "AbortError") {
-      console.error("Share error:", error);
-    }
-  }
-};
+//     if (navigator.canShare && navigator.canShare({ files: [file] })) {
+//       await navigator.share(shareData);
+//     } else {
+//       await navigator.share({
+//         title: article.title,
+//         text: `${article.title}\n\n${article.desc}`,
+//         url: shareUrl,
+//       });
+//     }
+//   } catch (error) {
+//     if (error.name !== "AbortError") {
+//       console.error("Share error:", error);
+//     }
+//   }
+// };
 
 // const handleShare = async () => {
 //   const shareUrl = `${window.location.origin}/article.html?id=${article.slug}`;
@@ -353,6 +353,18 @@ const fullContent = article?.content?.replace(
 //     console.error("Share error:", error);
 //   }
 // };
+
+const handleShare = () => {
+    const shareUrl = `${window.location.origin}/article.html?id=${article.slug}`;
+
+  const message =
+    `${article.title}\n\n${article.desc}\n\n${shareUrl}`;
+
+  const whatsappUrl =
+    `https://wa.me/?text=${encodeURIComponent(message)}`;
+
+  window.open(whatsappUrl, "_blank");
+};
 
   return (
     <div className="max-w-7xl mx-auto px-4 py-6">
