@@ -24,7 +24,7 @@ export async function generateMetadata({ params }) {
       url: `https://doordarshisamachar.in/article/${params.slug}`,
       images: [
         {
-          url: 'https://akm-img-a-in.tosshub.com/aajtak/images/story/202608/6a7d53dcbe5f5-cab-booking-tip-rules-131919136-16x9.jpg?size=948:533',
+          url: article.img,
         },
       ],
     },
@@ -289,37 +289,55 @@ const fullContent = article?.content?.replace(
   //   }
   // };
 
+// const handleShare = async () => {
+//   const shareUrl = `${window.location.origin}/article.html?id=${article.slug}`;
+//   console.log("dhjvc", article)
+//   const shareData = {
+//     title: article.title,
+//     text: `${article.title}\n\n${article.desc}`,
+//     url: shareUrl,
+//     img: article.img
+//   };
+//   try {
+//     if (navigator.share) {
+//       await navigator.share(shareData);
+//     } else {
+//       await navigator.clipboard.writeText(shareUrl);
+
+//       alert(
+//         lang === "en"
+//           ? "Link copied to clipboard!"
+//           : "लिंक क्लिपबोर्ड में कॉपी हो गया!"
+//       );
+//     }
+//   } catch (error) {
+//     console.error("Share error:", error);
+//   }
+// };
+
 const handleShare = async () => {
-  const shareUrl = `${window.location.origin}/article.html?id=${article.slug}`;
-  console.log("dhjvc", article)
+  const shareUrl =
+    `${window.location.origin}/article.html?id=${encodeURIComponent(article.slug)}`;
+
+  // Current page ke OG image ko change karna
+  let ogImage = document.querySelector('meta[property="og:image"]');
+
+  if (!ogImage) {
+    ogImage = document.createElement("meta");
+    ogImage.setAttribute("property", "og:image");
+    document.head.appendChild(ogImage);
+  }
+
+  ogImage.setAttribute("content", article.img);
+
   const shareData = {
     title: article.title,
     text: `${article.title}\n\n${article.desc}`,
     url: shareUrl,
-    openGraph: {
-      images: [
-        {
-          url: article.img,
-          width: 1200,
-          height: 630,
-        }
-      ]
-    }
   };
-  try {
-    if (navigator.share) {
-      await navigator.share(shareData);
-    } else {
-      await navigator.clipboard.writeText(shareUrl);
 
-      alert(
-        lang === "en"
-          ? "Link copied to clipboard!"
-          : "लिंक क्लिपबोर्ड में कॉपी हो गया!"
-      );
-    }
-  } catch (error) {
-    console.error("Share error:", error);
+  if (navigator.share) {
+    await navigator.share(shareData);
   }
 };
 
