@@ -1,6 +1,5 @@
 export async function generateMetadata({ params }) {
   const article = await getArticle(params.slug);
-  console.log("GenerateMetaData", article);
 
   return {
     title: article.title,
