@@ -10,14 +10,13 @@ export async function generateMetadata({ params }) {
       title: article.title,
       description: article.summary,
       type: "article",
-      // images: [article.images],
       images: [
-        {
-          url: article.image,
-          width: 1200,
-          height: 630,
-        },
-      ],
+      {
+        url: "https://akm-img-a-in.tosshub.com/aajtak/images/story/202608/6a7d53dcbe5f5-cab-booking-tip-rules-131919136-16x9.jpg?size=948:533",
+        width: 1200,
+        height: 630,
+      },
+    ],
     },
 
     twitter: {
