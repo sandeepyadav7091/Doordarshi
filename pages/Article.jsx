@@ -16,11 +16,11 @@ export async function generateMetadata({ params }) {
   if (!article) return {};
 
   return {
-    // title: article.title,
-    // description: article.desc,
+    title: article.title,
+    description: article.desc,
     openGraph: {
-      // title: article.title,
-      // description: article.desc,
+      title: article.title,
+      description: article.desc,
       url: `https://doordarshisamachar.in/article/${params.slug}`,
       images: [
         {
