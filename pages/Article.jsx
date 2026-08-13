@@ -16,11 +16,11 @@ export async function generateMetadata({ params }) {
   if (!article) return {};
 
   return {
-    title: article.title,
-    description: article.desc,
+    // title: article.title,
+    // description: article.desc,
     openGraph: {
-      title: article.title,
-      description: article.desc,
+      // title: article.title,
+      // description: article.desc,
       url: `https://doordarshisamachar.in/article/${params.slug}`,
       images: [
         {
@@ -292,10 +292,10 @@ const fullContent = article?.content?.replace(
 const handleShare = async () => {
   const shareUrl = `${window.location.origin}/article.html?id=${article.slug}`;
   const shareData = {
-    title: article.title,
+    // title: article.title,
     text: `${article.title}\n\n${article.desc}`,
-    url: shareUrl,
-    images: article.img
+    // url: shareUrl,
+    // images: article.img
   };
   try {
     if (navigator.share) {
