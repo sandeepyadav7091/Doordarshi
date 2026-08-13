@@ -24,7 +24,7 @@ export async function generateMetadata({ params }) {
       url: `https://doordarshisamachar.in/article/${params.slug}`,
       images: [
         {
-          url: article.img,
+          url: 'https://akm-img-a-in.tosshub.com/aajtak/images/story/202608/6a7d53dcbe5f5-cab-booking-tip-rules-131919136-16x9.jpg?size=948:533',
         },
       ],
     },
