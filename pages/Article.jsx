@@ -1,5 +1,7 @@
 "use client";
 
+import Head from "next/head";
+
 import { Search, Share } from "lucide-react";
 import Link from "next/link";
 import { useParams } from "next/navigation";
@@ -289,75 +291,85 @@ const fullContent = article?.content?.replace(
   //   }
   // };
 
-  const handleShare = async () => {
-  const shareUrl =
-    `https://doordarshisamachar.in/article.html?id=${encodeURIComponent(
-      article.slug
-    )}`;
+//   const handleShare = async () => {
+//   const shareUrl =
+//     `https://doordarshisamachar.in/article.html?id=${encodeURIComponent(
+//       article.slug
+//     )}`;
 
-  try {
-    const response = await fetch(article.img);
-    const blob = await response.blob();
-
-    const file = new File(
-      [blob],
-      "article-thumbnail.jpg",
-      {
-        type: blob.type || "image/jpeg",
-      }
-    );
-
-    const shareData = {
-      title: article.title,
-      text: `${article.title}\n\n${article.desc}`,
-      url: shareUrl,
-      files: [file],
-    };
-
-    if (navigator.canShare && navigator.canShare({ files: [file] })) {
-      await navigator.share(shareData);
-    } else {
-      await navigator.share({
-        title: article.title,
-        text: `${article.title}\n\n${article.desc}`,
-        url: shareUrl,
-      });
-    }
-  } catch (error) {
-    if (error.name !== "AbortError") {
-      console.error("Share error:", error);
-    }
-  }
-};
-
-// const handleShare = async () => {
-//   // const shareUrl = `${window.location.origin}/article.html?id=${article.slug}`;
-//   const shareUrl = `https://doordarshisamachar.in/article.html?id=${encodeURIComponent(article.slug)}`;
-//   const shareData = {
-//     title: article.title,
-//     text: `${article.title}\n\n${article.desc}`,
-//     url: shareUrl,
-//     img: article.img
-//   };
 //   try {
-//     if (navigator.share) {
+//     const response = await fetch(article.img);
+//     const blob = await response.blob();
+
+//     const file = new File(
+//       [blob],
+//       "article-thumbnail.jpg",
+//       {
+//         type: blob.type || "image/jpeg",
+//       }
+//     );
+
+//     const shareData = {
+//       title: article.title,
+//       text: `${article.title}\n\n${article.desc}`,
+//       url: shareUrl,
+//       files: [file],
+//     };
+
+//     if (navigator.canShare && navigator.canShare({ files: [file] })) {
 //       await navigator.share(shareData);
 //     } else {
-//       await navigator.clipboard.writeText(shareUrl);
-
-//       alert(
-//         lang === "en"
-//           ? "Link copied to clipboard!"
-//           : "लिंक क्लिपबोर्ड में कॉपी हो गया!"
-//       );
+//       await navigator.share({
+//         title: article.title,
+//         text: `${article.title}\n\n${article.desc}`,
+//         url: shareUrl,
+//       });
 //     }
 //   } catch (error) {
-//     console.error("Share error:", error);
+//     if (error.name !== "AbortError") {
+//       console.error("Share error:", error);
+//     }
 //   }
 // };
 
+const handleShare = async () => {
+  // const shareUrl = `${window.location.origin}/article.html?id=${article.slug}`;
+  const shareUrl = `https://doordarshisamachar.in/article.html?id=${encodeURIComponent(article.slug)}`;
+  const shareData = {
+    title: article.title,
+    text: `${article.title}\n\n${article.desc}`,
+    url: shareUrl,
+    img: article.img
+  };
+  try {
+    if (navigator.share) {
+      await navigator.share(shareData);
+    } else {
+      await navigator.clipboard.writeText(shareUrl);
+
+      alert(
+        lang === "en"
+          ? "Link copied to clipboard!"
+          : "लिंक क्लिपबोर्ड में कॉपी हो गया!"
+      );
+    }
+  } catch (error) {
+    console.error("Share error:", error);
+  }
+};
+
   return (
     <div className="max-w-7xl mx-auto px-4 py-6">
+      <Head>
+      <meta property="og:title" content={article?.title || ""} />
+      <meta property="og:description" content={article?.desc || ""} />
+      <meta property="og:image" content={article?.img || ""} />
+      <meta
+        property="og:url"
+        content={typeof window !== "undefined" ? window.location.href : ""}
+      />
+      <meta property="og:type" content="article" />
+    </Head>
       <Link href="/" className="text-red-600 hover:underline text-sm mb-4 inline-block">
         ← {lang === "en" ? "Back to Home" : "होम पर वापस जाएं"}
       </Link>
