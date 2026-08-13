@@ -21,7 +21,7 @@ export async function generateMetadata({ params }) {
     openGraph: {
       title: article.title,
       description: article.desc,
-      url: `https://doordarshisamachar.in/article/${params.slug}`,
+      url: `https://yourdomain.com/article/${params.slug}`,
       images: [
         {
           url: article.img,
@@ -292,10 +292,10 @@ const fullContent = article?.content?.replace(
 const handleShare = async () => {
   const shareUrl = `${window.location.origin}/article.html?id=${article.slug}`;
   const shareData = {
+    // image: article.img,
     title: article.title,
     text: `${article.title}\n\n${article.desc}`,
     url: shareUrl,
-    image: article.img
   };
   try {
     if (navigator.share) {
