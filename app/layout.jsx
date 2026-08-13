@@ -13,7 +13,7 @@ export const metadata = {
   metadataBase: new URL("https://doordarshisamachar.in"),
   icons: {
     icon: "https://akm-img-a-in.tosshub.com/aajtak/images/story/202608/6a7d53dcbe5f5-cab-booking-tip-rules-131919136-16x9.jpg?size=948:533",
-    shortcut: "https://doordarshisamachar.in/logo.png",
+    shortcut: "https://akm-img-a-in.tosshub.com/aajtak/images/story/202608/6a7d53dcbe5f5-cab-booking-tip-rules-131919136-16x9.jpg?size=948:533",
   },
 
   openGraph: {
