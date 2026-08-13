@@ -28,7 +28,7 @@ export const metadata = {
         height: 630,
       },
     ],
-    type: "website",
+    // type: "website",
   },
 };
 
